@@ -1,10 +1,10 @@
-## Ubuntu 15.04 armhf bitcoin fullnode base and run containers
+### Ubuntu 15.04 armhf bitcoin fullnode base and run containers
 
-### Tested:
+#### Tested:
 
 1. Odroid UX4, 16 GB eMMC, 120 GB SSD, Ubuntu 15.04, Docker 1.5.0, Bitcoin 0.11.0
 
-### Requirements:
+#### Requirements:
 
 1. `apt-get install docker.io`
 1. `/var/lib/docker` needs 2.5 GB of space (not including data).  (Recommend that you install SSD on USB3 and move /var/lib/docker there.)
@@ -13,7 +13,7 @@
 1. ~40GB of data storage for full indexed node
 1. `sudo -s` # be lazy
 
-### Build:
+#### Build:
 
 ```
 cd bitcoin
@@ -24,7 +24,7 @@ make # takes seconds
 cd ..
 ```
 
-### First Run:
+#### First Run:
 
 > NOTE: `/ssd/bitcoin_data` can be any director you want.  However, make sure you change all the commands below as well as edit `bitcoind.service`.
 
@@ -45,7 +45,7 @@ chmod 600 /ssd/bitcoin_data/bitcoin.conf
 chown -R bitcoin.bitcoin /ssd/bitcoin_data
 ```
 
-### Run:
+#### Run:
 
 ```
 docker run --name=bitcoind -d \
@@ -54,27 +54,27 @@ docker run --name=bitcoind -d \
     bitcoind:latest
 ```
 
-### Check:
+#### Check:
 
 ```
 echo -n "total blocks: "; curl https://blockchain.info/q/getblockcount; echo
 docker exec bitcoind bitcoin-cli -datadir=/tmp/bitcoin_data/ getinfo
 ```
 
-### Stop:
+#### Stop:
 ```
 docker stop bitcoind
 docker rm bitcoind
 ```
 
-### Create Service:
+#### Create Service:
 ```
 cp bitcoind.service /etc/systemd/system/
 systemctl enable bitcoind
 systemctl start bitcoind
 ```
 
-### Test Service:
+#### Test Service:
 ```
 docker exec bitcoind bitcoin-cli -datadir=/tmp/bitcoin_data/ getinfo
 ```
