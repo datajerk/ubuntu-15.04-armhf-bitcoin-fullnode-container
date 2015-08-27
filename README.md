@@ -1,6 +1,10 @@
-## Odroid UX4 Ubuntu 15.04 armhf full bicoin node build and run containers
+## Ubuntu 15.04 armhf bitcoin fullnode base and run containers
 
-Requirements:
+### Tested:
+
+1. Odroid UX4, 16 GB eMMC, 120 GB SSD
+
+### Requirements:
 
 1. `apt-get install docker.io`
 1. `/var/lib/docker` needs 2.5 GB of space (not including data).  Recommend that you install SSD on USB3 and move /var/lib/docker there.
@@ -22,9 +26,7 @@ cd ..
 
 ```
 mkdir -p /ssd/bitcoin_data
-
 chmod 700 /ssd/bitcoin_data
-
 useradd -u 2000 bitcoin -d /ssd/bitcoin_data
 
 cat >/ssd/bitcoin_data/bitcoin.conf <<EOF
@@ -34,7 +36,6 @@ txindex=1
 EOF
 
 chmod 600 /ssd/bitcoin_data/bitcoin.conf
-
 chown -R bitcoin.bitcoin /ssd/bitcoin_data
 ```
 
@@ -67,7 +68,7 @@ sudo systemctl enable /etc/systemd/system/bitcoind.service
 sudo systemctl start bitcoind.service
 ```
 
-### Test service
+### Test Service:
 ```
 docker exec bitcoind bitcoin-cli -datadir=/tmp/bitcoin_data/ getinfo
 ```
