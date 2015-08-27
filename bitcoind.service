@@ -1,0 +1,13 @@
+[Unit]
+Description=bitcoind
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill bitcoind
+ExecStartPre=-/usr/bin/docker rm bitcoind
+ExecStart=/usr/bin/docker run --name=bitcoind -d -e 'DATADIR=/tmp/bitcoin_data' -v /ssd/bitcoin_data:/tmp/bitcoin_data bitcoind:latest
+
+[Install]
+WantedBy=multi-user.target
