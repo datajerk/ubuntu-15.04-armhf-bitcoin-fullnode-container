@@ -1,4 +1,4 @@
-### Ubuntu 15.04 armhf bitcoin fullnode base and run containers
+### Ubuntu 15.04 armhf Bitcoin fullnode base and run containers
 
 #### Tested:
 
