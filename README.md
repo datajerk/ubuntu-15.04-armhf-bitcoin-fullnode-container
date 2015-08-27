@@ -8,9 +8,7 @@
 
 1. `apt-get install docker.io`
 1. `/var/lib/docker` needs 2.5 GB of space (not including data).
-
-	> Recommend that you install SSD on USB3 and move /var/lib/docker there.)
-
+	> Recommend that you install SSD on USB3 and move /var/lib/docker there.
 1. `systemctl enable docker`
 1. `systemctl start docker`
 1. ~40GB of data storage for an indexed fullnode
