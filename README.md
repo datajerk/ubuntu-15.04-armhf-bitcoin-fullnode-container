@@ -26,7 +26,9 @@ cd ..
 
 ### First Run:
 
-> NOTE: `/ssd/bitcoin_data` can be any director you want.  However, make sure you change all the commands below as well as edit `bitcoind.service`
+> NOTE: `/ssd/bitcoin_data` can be any director you want.  However, make sure you change all the commands below as well as edit `bitcoind.service`.
+
+> NOTE: Username and UID (2000) can be changed, however `bitcoind/Dockerfile`, will also have to be updated.
 
 ```
 mkdir -p /ssd/bitcoin_data
