@@ -63,8 +63,7 @@ echo -n "total blocks: "; curl https://blockchain.info/q/getblockcount; echo
 docker exec bitcoind bitcoin-cli -datadir=/tmp/bitcoin_data/ getinfo
 ```
 
-##### Example Output:
-
+> ##### Example Output:
 ```
 total blocks: 371795
 {
