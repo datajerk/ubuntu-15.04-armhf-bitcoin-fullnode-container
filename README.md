@@ -7,17 +7,20 @@
 #### Requirements:
 
 1. `apt-get install docker.io`
-1. `/var/lib/docker` needs 2.5 GB of space (not including data).  (Recommend that you install SSD on USB3 and move /var/lib/docker there.)
+1. `/var/lib/docker` needs 2.5 GB of space (not including data).
+
+	> Recommend that you install SSD on USB3 and move /var/lib/docker there.)
+
 1. `systemctl enable docker`
 1. `systemctl start docker`
-1. ~40GB of data storage for full indexed node
-1. `sudo -s` # be lazy
+1. ~40GB of data storage for an indexed fullnode
+1. `sudo -s # be lazy :-)`
 
 #### Build:
 
 ```
 cd bitcoin
-make # takes an hour
+make # takes 64 minutes (Odroid UX4)
 cd ..
 cd bitcoind
 make # takes seconds
@@ -59,6 +62,29 @@ docker run --name=bitcoind -d \
 ```
 echo -n "total blocks: "; curl https://blockchain.info/q/getblockcount; echo
 docker exec bitcoind bitcoin-cli -datadir=/tmp/bitcoin_data/ getinfo
+```
+
+##### Example Output:
+
+```
+total blocks: 371795
+{
+    "version" : 110000,
+    "protocolversion" : 70002,
+    "walletversion" : 60000,
+    "balance" : 0.00000000,
+    "blocks" : 51280,
+    "timeoffset" : -1,
+    "connections" : 8,
+    "proxy" : "",
+    "difficulty" : 7.81979699,
+    "testnet" : false,
+    "keypoololdest" : 1440701395,
+    "keypoolsize" : 101,
+    "paytxfee" : 0.00000000,
+    "relayfee" : 0.00001000,
+    "errors" : ""
+}
 ```
 
 #### Stop:
