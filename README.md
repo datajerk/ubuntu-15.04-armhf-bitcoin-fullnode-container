@@ -2,14 +2,15 @@
 
 #### Tested:
 
-1. Odroid UX4, 16 GB eMMC, 120 GB SSD, Ubuntu 15.04, Docker 1.5.0, Bitcoin 0.11.0
+1. Odroid UX4, 16 GB eMMC, USB3/120 GB SSD, Ubuntu 15.04, Docker 1.5.0, Bitcoin 0.11.0
+1. RPI2, 32 GB SD, HyperIOT (20150416-201537), Docker 1.6.0, Bitcoin 0.11.0
 
 #### Requirements:
 
 1. `apt-get install docker.io`
 1. `/var/lib/docker` needs 2.5 GB of space (not including data).
 
-	> Recommend that you install SSD on USB3 and move /var/lib/docker there.
+	> Recommend that you use SSD on USB and move /var/lib/docker there.
 1. `systemctl enable docker`
 1. `systemctl start docker`
 1. ~40GB of data storage for an indexed fullnode
@@ -19,10 +20,10 @@
 
 ```
 cd bitcoin
-make # takes 64 minutes (Odroid UX4)
+make # Odroid UX4/USB3/SSD: 64 min, RPi2/SD: 331 min (make -j args halved)
 cd ..
 cd bitcoind
-make # takes seconds
+make # seconds (RPi2/SD: minutes)
 cd ..
 ```
 
@@ -63,7 +64,7 @@ echo -n "total blocks: "; curl https://blockchain.info/q/getblockcount; echo
 docker exec bitcoind bitcoin-cli -datadir=/tmp/bitcoin_data/ getinfo
 ```
 
-> ##### Example Output:
+> Example Output:
 ```
 total blocks: 371795
 {
