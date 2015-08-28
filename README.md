@@ -5,6 +5,10 @@
 1. Odroid UX4, 16 GB eMMC, USB3/120 GB SSD, Ubuntu 15.04, Docker 1.5.0, Bitcoin 0.11.0
 1. RPI2, 32 GB SD, HyperIOT (20150416-201537), Docker 1.6.0, Bitcoin 0.11.0
 
+#### Notes:
+
+1. Pulling down the entire blockchain will take about 36 hours and will take up about ~40 GB of space.  By default every core will be running `bitcoin-scriptc`.  If you want to limit the overhead of this container, edit `bitcoind.service` and change `VER_THREADS=0` to `VER_THREADS=n` where *n* is the max number of cores to use.
+
 #### Requirements:
 
 1. `apt-get install docker.io`

@@ -48,7 +48,7 @@ RUN make -j2 # needs 1GB RAM/j
 RUN make install
 
 WORKDIR /tmp
-#RUN rm -rf bitcoin db*
+RUN rm -rf bitcoin db*
 
 WORKDIR /
 
