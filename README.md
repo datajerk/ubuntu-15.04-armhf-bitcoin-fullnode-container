@@ -7,8 +7,8 @@
 
 #### Notes:
 
-1. Pulling down the entire blockchain will take ~2 days and ~50GB of space.
-1. By default every core will be running `bitcoin-scriptc`.  If you want to limit the overhead of this container, edit `bitcoind.service` and change `VER_THREADS=0` to `VER_THREADS=n` where *n* is the max number of cores to use.
+1. Pulling down the entire blockchain will take ~2 days and ~52GB of space.
+1. By default every core will be running `bitcoin-scriptc`.  If you want to limit the overhead of this container, then edit `bitcoind.service` and change `VER_THREADS=0` to `VER_THREADS=n` where *n* is the max number of cores to use.
 
 #### Requirements:
 
@@ -18,7 +18,7 @@
 	> Recommend that you use SSD on USB and move /var/lib/docker there.
 1. `systemctl enable docker`
 1. `systemctl start docker`
-1. ~50GB of data storage for an indexed fullnode
+1. ~52GB of data storage for an indexed fullnode
 1. `sudo -s # be lazy :-)`
 
 #### Build:

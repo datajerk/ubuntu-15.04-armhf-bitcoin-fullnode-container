@@ -12,5 +12,5 @@ USER bitcoin
 
 EXPOSE 8333
 
-ENTRYPOINT /usr/local/bin/bitcoind -reindex -datadir=$DATADIR -par=$VER_THREADS
+ENTRYPOINT /usr/local/bin/bitcoind -datadir=$DATADIR -par=$VER_THREADS
 
