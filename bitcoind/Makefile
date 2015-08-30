@@ -1,5 +1,5 @@
 
-VER = v1
+VER = v2
 
 default: build
 
