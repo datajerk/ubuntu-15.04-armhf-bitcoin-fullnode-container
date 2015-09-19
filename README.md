@@ -21,11 +21,26 @@
 1. ~52GB of data storage for an indexed fullnode
 1. `sudo -s # be lazy :-)`
 
+#### Build Times:
+
+| Platform    | OS Storage   | Docker/Swap Storage | Swap* (GB) | -j (jobs) | Time (min) |
+|-------------|--------------|---------------------|:----------:|:---------:|-----------:|
+| Odroid UX4  | eMMC         | USB3 SSD            | 0          |         2 |  70        |
+| Odroid UX4  | eMMC         | USB3 SSD            | 4          |         4 |  56        |
+| RPi 2       | SD           | SD                  | 0          |         1 | 331        |
+| RPi 2       | SD           | USB2 SSD            | 0          |         1 | 252        |
+| RPi 2       | SD           | USB2 SSD            | 2          |         2 | 182        |
+| RPi 2       | SD           | USB2 SSD            | 2          |         4 | 168        |
+
+\* Swap on SD/eMMC is a poor idea and a quick way to wear them out.
+
 #### Build:
+
+> Edit Dockerfile and change `-j` to the correct number of `make` jobs.
 
 ```
 cd bitcoin
-make # Odroid UX4/USB3/SSD: 64 min, RPi2/SD: 331 min (make -j args halved)
+make
 cd ..
 cd bitcoind
 make # seconds (RPi2/SD: minutes)
