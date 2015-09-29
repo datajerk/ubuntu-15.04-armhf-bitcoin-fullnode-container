@@ -32,7 +32,7 @@
 | RPi 2       | SD           | USB2 SSD            | 2          |         2 | 182        |
 | RPi 2       | SD           | USB2 SSD            | 2          |         4 | 168        |
 | qemu-static-arm<br />2 GHz x86_64 cloud instance | SSD | SSD | 0 | 1 | FAIL |
-| qemu-system-arm<br />Debian 8, Kernel 3.18.21<br />2 GHz x86_64 cloud instance | SSD | SSD | 0 | 1 | 898 |
+| qemu-system-arm<br />Debian 8, Kernel 3.18.21<br />2 GHz x86_64 cloud instance | SSD | SSD | 0 | 1 | 910 |
 | qemu-system/static-arm<br />multistage hybrid<br />2 GHz x86_64 cloud instance | SSD | SSD | 0 | 1 | TBD |
 | qemu-static-arm<br />cross compiler hybrid<br />2 GHz x86_64 cloud instance | SSD | SSD | 0 | 1 | TBD |
 
