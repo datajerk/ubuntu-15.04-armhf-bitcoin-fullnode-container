@@ -1,0 +1,40 @@
+FROM armv7/armhf-ubuntu:latest
+
+ENV LC_ALL C
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
+
+MAINTAINER <datajerk@gmail.com>
+
+RUN apt-get update -y
+RUN apt-get dist-upgrade -y
+RUN apt-get install -y aptitude wget git gcc dh-autoreconf autoconf libtool linux-headers-generic build-essential libqtcore4 libqtgui4 libqt4-dev pkg-config libboost-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev libboost-test-dev libssl-dev libprotobuf-dev protobuf-compiler 
+
+WORKDIR /tmp
+RUN wget http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz
+RUN tar zxvf db-4.8.30.NC.tar.gz
+WORKDIR /tmp/db-4.8.30.NC/
+RUN mkdir -p build
+WORKDIR /tmp/db-4.8.30.NC/build
+ENV BDB_PREFIX /tmp/db-4.8.30.NC/build
+RUN ../dist/configure --disable-shared --enable-cxx --with-pic --prefix=$BDB_PREFIX
+RUN make -j4
+RUN make install
+
+WORKDIR /tmp
+RUN git clone https://github.com/bitcoin/bitcoin.git
+WORKDIR /tmp/bitcoin/
+RUN git checkout v0.11.2
+RUN ./autogen.sh
+RUN ./configure CPPFLAGS="-I${BDB_PREFIX}/include/ -O2" LDFLAGS="-L${BDB_PREFIX}/lib/" --with-gui
+RUN make -j4 # needs 1GB RAM/j
+RUN make install
+
+RUN strip /usr/local/bin/*
+
+COPY deps.sh /tmp/
+RUN chmod 700 /tmp/deps.sh
+RUN /tmp/deps.sh >/usr/local/deps.txt
+
+WORKDIR /
+

@@ -12,10 +12,11 @@
 
 #### Requirements:
 
-1. `apt-get install docker.io`
+1. `apt-get install docker.io` (or equiv)
 1. `/var/lib/docker` needs 2.5 GB of space (not including data).
 
 	> Recommend that you use SSD on USB and move /var/lib/docker there.
+
 1. `systemctl enable docker`
 1. `systemctl start docker`
 1. ~52GB of data storage for an indexed fullnode
@@ -40,22 +41,19 @@
 
 #### Build:
 
-> Edit Dockerfile and change `-j` to the correct number of `make` jobs.
+> Edit `Dockerfile.build` and change `-j` to the correct number of `make` jobs.
 
 ```
-cd bitcoin
 make
-cd ..
-cd bitcoind
-make # seconds (RPi2/SD: minutes)
-cd ..
 ```
+
+This will build two images, `bitcoinbuild` and `bitcoin`.  The later is optimized for space and contains only the runtime and its dependancies.
 
 #### First Run:
 
 > NOTE: `/ssd/bitcoin_data` can be any director you want.  However, make sure you change all the commands below as well as edit `bitcoind.service`.
 
-> NOTE: Username (`bitcoin`) and UID (`2000`) can be changed, however `bitcoind/Dockerfile`, will also have to be updated.
+> NOTE: Username (`bitcoin`) and UID (`2000`) can be changed, however `Dockerfile.run`, will also have to be updated.
 
 ```
 mkdir -p /ssd/bitcoin_data
@@ -78,7 +76,7 @@ chown -R bitcoin.bitcoin /ssd/bitcoin_data
 docker run --name=bitcoind -d \
     -e 'DATADIR=/tmp/bitcoin_data' \
     -v /ssd/bitcoin_data:/tmp/bitcoin_data \
-    bitcoind:latest
+    bitcoin:latest
 ```
 
 #### Check:
