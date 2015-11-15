@@ -2,8 +2,8 @@
 
 #### Tested:
 
-1. Odroid UX4, 16 GB eMMC, USB3/120 GB SSD, Ubuntu 15.04, Docker 1.5.0, Bitcoin 0.11.0
-1. RPI2, 32 GB SD, HyperIOT (20150416-201537), Docker 1.6.0, Bitcoin 0.11.0
+1. Odroid UX4, 16 GB eMMC, USB3/120 GB SSD, Ubuntu 15.04, Docker 1.5.0, Bitcoin 0.11.2
+1. RPI2, 32 GB SD, HyperIOT (20150416-201537), Docker 1.6.0, Bitcoin 0.11.2
 
 #### Notes:
 
