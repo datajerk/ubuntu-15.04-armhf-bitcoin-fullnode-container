@@ -22,23 +22,6 @@
 1. ~52GB of data storage for an indexed fullnode
 1. `sudo -s # be lazy :-)`
 
-#### Build Times:
-
-| Platform    | OS Storage   | Docker/Swap Storage | Swap* (GB) | -j (jobs) | Time (min) |
-|-------------|--------------|---------------------|:----------:|:---------:|-----------:|
-| Odroid UX4  | eMMC         | USB3 SSD            | 0          |         2 |  70        |
-| Odroid UX4  | eMMC         | USB3 SSD            | 4          |         4 |  56        |
-| RPi 2       | SD           | SD                  | 0          |         1 | 331        |
-| RPi 2       | SD           | USB2 SSD            | 0          |         1 | 252        |
-| RPi 2       | SD           | USB2 SSD            | 2          |         2 | 182        |
-| RPi 2       | SD           | USB2 SSD            | 2          |         4 | 168        |
-| qemu-static-arm<br />2 GHz x86_64 cloud instance | SSD | SSD | 0 | 1 | FAIL |
-| qemu-system-arm<br />Debian 8, Kernel 3.18.21<br />2 GHz x86_64 cloud instance | SSD | SSD | 0 | 1 | 910 |
-| qemu-system/static-arm<br />multistage hybrid<br />2 GHz x86_64 cloud instance | SSD | SSD | 0 | 1 | TBD |
-| qemu-static-arm<br />cross compiler hybrid<br />2 GHz x86_64 cloud instance | SSD | SSD | 0 | 1 | TBD |
-
-\* Swap on SD/eMMC is a poor idea and a quick way to wear them out.
-
 #### Build:
 
 > Edit `Dockerfile.build` and change `-j` to the correct number of `make` jobs.
@@ -48,6 +31,23 @@ make
 ```
 
 This will build two images, `bitcoinbuild` and `bitcoin`.  The later is optimized for space and contains only the runtime and its dependancies.
+
+#### Build Times:
+
+| Platform    | OS Storage   | Docker/Swap Storage | Swap* (GB) | -j (jobs) | Time (min) |
+|-------------|--------------|---------------------|:----------:|:---------:|-----------:|
+| Odroid UX4  | eMMC         | USB3 SSD            | 4          |         4 |  56        |
+| Odroid UX4  | eMMC         | USB3 SSD            | 0          |         2 |  70        |
+| RPi 2       | SD           | USB2 SSD            | 2          |         4 | 168        |
+| RPi 2       | SD           | USB2 SSD            | 2          |         2 | 182        |
+| RPi 2       | SD           | USB2 SSD            | 0          |         1 | 252        |
+| RPi 2       | SD           | SD                  | 0          |         1 | 331        |
+| qemu-static-arm<br />2 GHz x86_64 cloud instance | SSD | SSD | 0 | 1 | FAIL |
+| qemu-system-arm<br />Debian 8, Kernel 3.18.21<br />2 GHz x86_64 cloud instance | SSD | SSD | 0 | 1 | 910 |
+| qemu-system/static-arm<br />multistage hybrid<br />2 GHz x86_64 cloud instance | SSD | SSD | 0 | 1 | TBD |
+| qemu-static-arm<br />cross compiler hybrid<br />2 GHz x86_64 cloud instance | SSD | SSD | 0 | 1 | TBD |
+
+\* Swap on SD/eMMC is a poor idea and a quick way to wear them out.
 
 #### First Run:
 
